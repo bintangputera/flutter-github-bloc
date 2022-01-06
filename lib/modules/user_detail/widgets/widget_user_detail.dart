@@ -73,7 +73,7 @@ class WidgetUserDetail extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                   color: Colors.white12),
               child: Text(
-                userModel.bio,
+                userModel.bio ?? "-",
                 style: AppTheme.subtitle2,
               ),
             ),

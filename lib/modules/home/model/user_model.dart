@@ -71,7 +71,7 @@ class UserModel {
   String? location;
   String? email;
   dynamic hireable;
-  String bio;
+  String? bio;
   dynamic twitterUsername;
   int publicRepos;
   int publicGists;
