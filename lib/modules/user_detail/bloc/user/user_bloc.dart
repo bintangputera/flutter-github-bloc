@@ -12,11 +12,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<GetDetailUserEvent>(
       (event, emit) async {
+        // use `emit` to update the state
         emit(ShowLoadingDetailUserState());
         try {
           var map = await _repo.getProfileDetail(event.username);
+          // use `emit` to update the state
           emit(ShowUserDetailState(map));
         } catch (ex) {
+          // use `emit` to update the state
           emit(ShowErrorDetailState("$ex"));
         }
       },

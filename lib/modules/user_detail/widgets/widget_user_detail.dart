@@ -1,16 +1,21 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_bloc/config/themes.dart';
 import 'package:github_bloc/modules/home/model/user_model.dart';
 import 'package:github_bloc/modules/user_detail/bloc/user/user_bloc.dart';
 import 'package:github_bloc/modules/user_detail/bloc/user/user_state.dart';
+import 'package:github_bloc/modules/webview/web_view_screen.dart';
 import 'package:github_bloc/utils/others/shimmer_loading.dart';
 import 'package:github_bloc/widgets/components/loading_widget.dart';
 
 class WidgetUserDetail extends StatelessWidget {
   const WidgetUserDetail({
+    required this.context,
     Key? key,
   }) : super(key: key);
+
+  final BuildContext context;
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +143,10 @@ class WidgetUserDetail extends StatelessWidget {
                   ),
                   TextSpan(
                     text: userModel.blog ?? "-",
+                    recognizer: TapGestureRecognizer()
+                    ..onTap = (){
+                      Navigator.pushNamed(context, WebViewScreen.routeName, arguments:userModel.blog);
+                    } ,
                     style: AppTheme.subtitle2
                         .copyWith(fontWeight: FontWeight.bold),
                   ),

@@ -42,6 +42,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
   void dispose() {
     // TODO: implement dispose
     _userBloc.close();
+    print('blocs disposed');
     super.dispose();
   }
 
@@ -64,8 +65,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
           child: Column(
             children: [
               // Detail user
-              WidgetUserDetail(),
-              
+              WidgetUserDetail(context: context,),
               // Follower list
               // WidgetFollowerList()
             ],
