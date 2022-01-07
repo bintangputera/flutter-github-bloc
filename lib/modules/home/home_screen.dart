@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github_bloc/config/themes.dart';
 import 'package:github_bloc/modules/user_detail/user_detail_screen.dart';
 import 'package:github_bloc/widgets/app_button.dart';
+import 'package:github_bloc/widgets/components/ticket_clipper_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -101,8 +102,186 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: 12,
               ),
               loading: submitButtonLoading,
+            ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    return _buildPopUpTicket();
+                  },
+                );
+              },
+              child: Text("Show Popup"),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPopUpTicket() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 100, 24, 32),
+      child: ClipPath(
+        clipper: DolDurmaClipper(bottom: MediaQuery.of(context).size.height / 2.0 - 70, holeRadius: 30),
+        child: Material(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24)
+            ),
+            margin: EdgeInsets.fromLTRB(24, 24, 24, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    "Gunung Tangkuban Perahu via Sulur",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF2A74B3),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12),
+                Center(
+                  child: Text(
+                    "Pembayaran Offline",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF505050)),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Order no. #IF34356"),
+                    Text(
+                      "Rp 200.000",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF2A74B3),
+                      ),
+                    ),
+                  ],
+                ),
+                Divider(),
+                SizedBox(height: 16),
+                Text(
+                  "Nama Pengguna",
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Color(0xFFB1B1B1),
+                  ),
+                ),
+                Text("Jenny Simmons"),
+                SizedBox(
+                  height: 24,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "Waktu",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFFB1B1B1),
+                          ),
+                        ),
+                        Text(
+                          "13.15",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "Tanggal",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFFB1B1B1),
+                          ),
+                        ),
+                        Text(
+                          "25 Juli 2001",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "Jumlah",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFFB1B1B1),
+                          ),
+                        ),
+                        Text(
+                          "3 Tiket",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24),
+                Text(
+                  "Silahkan melakukan scan QR Code pada Destinasi Anda",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF2A74B3),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Center(
+                  child: Image.asset("assets/images/qrcode.png"),
+                ),
+                SizedBox(height: 32),
+                Container(
+                  width: double.infinity,
+                  child: MaterialButton(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    color: Color(0xFF2C79BA),
+                    child: Text(
+                      "Kembali",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24),
+              ],
+            ),
+          ),
         ),
       ),
     );
